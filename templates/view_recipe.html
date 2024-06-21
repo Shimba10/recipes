@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="mt-4">
+    <h1>{{ recipe.title }}</h1>
+    <p>{{ recipe.description }}</p>
+    <h3>Ingredients</h3>
+    <ul>
+        {% for ingredient in recipe.ingredients %}
+            <li>{{ ingredient }}</li>
+        {% endfor %}
+    </ul>
+    <h3>Instructions</h3>
+    <p>{{ recipe.instructions }}</p>
+    {% if current_user.is_authenticated and current_user.id == recipe.created_by %}
+        <a href="{{ url_for('edit_recipe', recipe_id=recipe.id) }}" class="btn btn-primary">Edit</a>
+        <form action="{{ url_for('delete_recipe', recipe_id=recipe.id) }}" method="post" style="display:inline;">
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+    {% endif %}
+</div>
+{% endblock %}

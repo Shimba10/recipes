@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="mt-4">
+    <h1>Edit Recipe</h1>
+    <form id="editRecipeForm" method="POST">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" name="title" value="{{ recipe.title }}" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" name="description" required>{{ recipe.description }}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="ingredients">Ingredients</label>
+            <input type="text" class="form-control" id="ingredients" name="ingredients" value="{{ recipe.ingredients }}" required>
+        </div>
+        <div class="form-group">
+            <label for="instructions">Instructions</label>
+            <textarea class="form-control" id="instructions" name="instructions" required>{{ recipe.instructions }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Save Changes</button>
+    </form>
+</div>
+
+
+{% endblock %}

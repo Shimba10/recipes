@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="mt-4">
+    <h1>Recipes</h1>
+    <a href="{{ url_for('create_recipe') }}" class="btn btn-primary mb-2">Create Recipe</a>
+    <div class="list-group">
+        {% for recipe in recipes %}
+            <a href="{{ url_for('view_recipe', recipe_id=recipe.id) }}" class="list-group-item list-group-item-action">
+                {{ recipe.title }}
+            </a>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="mt-4">
+    <h1>Create Recipe</h1>
+    <form id="createRecipeForm">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" name="title" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea class="form-control" id="description" name="description" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="ingredients">Ingredients</label>
+            <input type="text" class="form-control" id="ingredients" name="ingredients" required>
+        </div>
+        <div class="form-group">
+            <label for="instructions">Instructions</label>
+            <textarea class="form-control" id="instructions" name="instructions" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Create Recipe</button>
+    </form>
+</div>
+
+<script>
+document.getElementById('createRecipeForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const formData = new FormData(this);
+    fetch('/recipe/create', {
+        method: 'POST',
+        body: formData
+    }).then(response => response.text())
+    .then(html => {
+        document.body.innerHTML = html;
+    }).catch(error => console.error('Error:', error));
+});
+</script>
+{% endblock %}
